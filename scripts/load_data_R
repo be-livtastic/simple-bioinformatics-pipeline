@@ -1,0 +1,49 @@
+#!/usr/bin/env Rscript
+
+# ============================================================
+# Script: GEO Data Download
+# Purpose:
+#   - Extract the expression matrix
+#   - Save it in a standardized format for downstream scripts
+#
+# Output:
+#   - expression_data.csv (rows = genes, columns = samples)
+# ============================================================
+
+
+extract_expression_data <- function(gset) {
+  # Extract expression matrix
+  expression_data <- exprs(gset)
+  
+  # Round values (commonly used for count-like data in examples)
+  expression_data <- round(expression_data)
+  
+  return(expression_data)
+}
+
+save_expression_data <- function(expression_data, outdir) {
+  output_file <- file.path(outdir, "expression_data.csv")
+  
+  write.csv(expression_data, output_file)
+}
+
+# ---- Main pipeline logic ----
+
+args <- commandArgs(trailingOnly = TRUE)
+check_args(args)
+
+outdir <- args[1]
+geo_id <- args[2]
+
+# Create output directory if it doesn't exist
+if (!dir.exists(outdir)) {
+  dir.create(outdir, recursive = TRUE)
+}
+
+
+expression_data <- extract_expression_data(gset)
+
+# Save for downstream analysis
+save_expression_data(expression_data, outdir)
+
+
