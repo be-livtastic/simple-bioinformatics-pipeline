@@ -90,25 +90,6 @@ Depending on future expansions:
 
 ---
 
-## ▶️ How to Run the Pipeline
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/simple-bioinformatics-pipeline.git
-   ```
-
-2. Open the project in R or RStudio.
-
-3. Run the pipeline script:
-
-   ```r
-   source("scripts/pipeline.R")
-   ```
-
-4. View results in the `results/` directory.
-
----
 
 ## 🚧 Current Limitations
 
